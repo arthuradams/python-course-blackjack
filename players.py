@@ -10,9 +10,21 @@ class Player:
     
     
     def __str__(self):
-        card_list = ""
+        card_list = []
         for card in self.hand:
-            card_list += str(card) + " "
-        return f'Player {self.name} has {card_list}.'
+            card_list.append(str(card))
+        return f'Player {self.name} has {", ".join(card_list)} with a value of {self.hand_total()}.'
+
+    def hand_total(self):
+        total = 0
+        ace_found = False
+        for card in self.hand:
+            if card.rank == "Ace":
+                ace_found = True
+            total += card.value
+        if ace_found and total > 21:
+            total -= 10
+        return total
+
 
         

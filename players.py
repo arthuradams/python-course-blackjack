@@ -10,10 +10,10 @@ class Player:
     
     
     def __str__(self):
-        card_list = []
-        for card in self.hand:
-            card_list.append(str(card))
-        return f'Player {self.name} has {", ".join(card_list)} with a value of {self.hand_total()}.'
+#        card_list = []
+#        for card in self.hand:
+#            card_list.append(str(card))
+        return f'Player {self.name} has {", ".join(self.hand)} with a value of {self.hand_total()}.'
 
     def hand_total(self):
         total = 0

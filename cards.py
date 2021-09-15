@@ -30,5 +30,13 @@ class Deck:
         
     def deal_one(self):
         # Note we remove one card from the list of all_cards
-        return self.all_cards.pop()       
+        return self.all_cards.pop()
+
+    def __str__(self):
+        card_list = []
+        for card in self.all_cards:
+            card_list.append(str(card))
+        return "\n".join(card_list)
+
+
 

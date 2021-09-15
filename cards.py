@@ -18,11 +18,13 @@ class Deck:
     
     def __init__(self):
         # Note this only happens once upon creation of a new Deck
-        self.all_cards = [] 
-        for suit in suits:
-            for rank in ranks:
-                # This assumes the Card class has already been defined!
-                self.all_cards.append(Card(suit,rank))
+        self.all_cards = []
+        for deck_count in range(0,5):
+            for suit in suits:
+                for rank in ranks:
+                    # This assumes the Card class has already been defined!
+                    self.all_cards.append(Card(suit,rank))
+        print(f"The length of the deck is {len(self.all_cards)}")
                 
     def shuffle(self):
         # Note this doesn't return anything

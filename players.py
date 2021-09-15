@@ -1,8 +1,9 @@
 class Player:
     
-    def __init__(self,name, show_first_card=True):
+    def __init__(self, name, bank, show=True):
         self.name = name
-        self.show_first_card = show_first_card
+        self.bank = bank
+        self.show = show
         # A new player has no cards
         self.hand = [] 
         
@@ -12,14 +13,14 @@ class Player:
     def __str__(self):
         card_list = []
         for card in self.hand:
-            if len(card_list) == 0 and not self.show_first_card:
+            if len(card_list) == 0 and not self.show:
                 card_list.append("Face down")
             else:
                 card_list.append(str(card))
 
         outstr = f'{self.name} has {", ".join(card_list)}'
 
-        if self.show_first_card:
+        if self.show:
             outstr += f" has a value of {self.hand_total()}"
 
         return outstr
@@ -36,4 +37,15 @@ class Player:
         return total
 
 
-        
+def create_player():
+    name = input("What is your name? ")
+
+    while True:
+        try: 
+            bank = float(input("How much money do you have? "))
+        except:
+            print("Please enter a number.")
+        else: 
+            break
+
+    return Player(name, bank, True)

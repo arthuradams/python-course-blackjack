@@ -24,7 +24,6 @@ class Deck:
                 for rank in ranks:
                     # This assumes the Card class has already been defined!
                     self.all_cards.append(Card(suit,rank))
-        print(f"The length of the deck is {len(self.all_cards)}")
                 
     def shuffle(self):
         # Note this doesn't return anything

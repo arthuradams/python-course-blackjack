@@ -68,6 +68,7 @@ class Player:
                     break
             if bet > self.bank:
                 print(f"You only have {self.bank}")
+                bet = -1
             elif bet < 0:
                 print("You have to wager a positive amount.")
             elif bet == 0:

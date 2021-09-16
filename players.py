@@ -6,6 +6,8 @@ class Player:
         self.show = show
         # A new player has no cards
         self.hand = [] 
+        self.bust = False
+        self.wager = 0
         
     def add_card(self,new_card):
         self.hand.append(new_card)
@@ -36,16 +38,68 @@ class Player:
             total -= 10
         return total
 
+    def play(self,deck):
+        player_bust = False
+        while True:
+            if self.hand_total() > 21:
+                print( "Bust" )
+                player_bust = True
+                break
+            choice = input(f"{self.name}, do you want to (H) or (S)tand? ")
+            if choice[0].upper() == "S":
+                break
+            elif choice[0].upper() == "H":
+                self.add_card(deck.deal_one())
+                print(self)
+            else:
+                print("Invalid selection")
+        return player_bust
+    
+    def get_wager(self):
+        bet = -1
+        print(f"{self.name}, you have {self.bank}.")
+        while bet < 0:
+            while True:
+                try: 
+                    bet = int(input("How much do you want to wager? "))
+                except:
+                    print("Please enter a number.")
+                else: 
+                    break
+            if bet > self.bank:
+                print(f"You only have {self.bank}")
+            elif bet < 0:
+                print("You have to wager a positive amount.")
+            elif bet == 0:
+                print("Okay, this one is just for fun.")
+        
+        self.wager = bet
+    
+    def reset_hand(self):
+        self.hand = []
+
+
+
 
 def create_player():
     name = input("What is your name? ")
 
     while True:
         try: 
-            bank = float(input("How much money do you have? "))
+            bank = int(input("How much money do you have? "))
         except:
             print("Please enter a number.")
         else: 
             break
 
     return Player(name, bank, True)
+
+def another_game(name):
+    while True:
+        another_game = input(f"{name}, do you want to play another hand (Y/N)? ")[0].upper()
+        if another_game == "Y":
+            return True
+        elif another_game == "N":
+            return False
+        else:
+            print("Please enter Y or N")

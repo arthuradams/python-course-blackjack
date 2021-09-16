@@ -79,9 +79,6 @@ class Player:
     def reset_hand(self):
         self.hand = []
 
-
-
-
 def create_player():
     name = input("What is your name? ")
 
